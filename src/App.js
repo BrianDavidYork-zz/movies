@@ -7,34 +7,37 @@ const App = () => {
   const [genres, setGenres] = useState([])
 
   useEffect(() => {
-    const fetchMoviesAndSetState = async () =>{
-      const res = await fetch('https://wookie.codesubmit.io/movies', {
-        headers: {
-          'Authorization': 'Bearer Wookie2019'
+    fetchMoviesAndSetState();
+  }, []);
+
+  useEffect(() => {
+    generateGenresAndSetState();
+  }, [movies])
+
+  const fetchMoviesAndSetState = async () =>{
+    const res = await fetch('https://wookie.codesubmit.io/movies', {
+      headers: {
+        'Authorization': 'Bearer Wookie2019'
+      }
+    })
+    const allMovies = await res.json()
+    setMovies(allMovies.movies)
+    console.log(movies)
+  }
+
+  const generateGenresAndSetState = () => {
+    const allGenres = []
+    
+    movies.forEach((m) => {
+      m.genres.forEach((g) => {
+        if (!allGenres.includes(g)) {
+          allGenres.push(g)
         }
       })
-      const allMovies = await res.json()
-      setMovies(allMovies.movies)
-      // console.log(movies)
-    }
-  
-    const generateGenresAndSetState = () => {
-      const allGenres = []
-      
-      movies.forEach((m) => {
-        m.genres.forEach((g) => {
-          if (!allGenres.includes(g)) {
-            allGenres.push(g)
-          }
-        })
-      })
-      setGenres(allGenres)
-      console.log(genres)
-    }
-
-    fetchMoviesAndSetState()
-    generateGenresAndSetState()
-  }, [])
+    })
+    setGenres(allGenres)
+    console.log(genres)
+  }
 
   const moviesByGenre = (movies, genre) => {
     return movies.filter((m) => {
