@@ -4,14 +4,14 @@ const MovieThumbnail = ({ imageAddress, movieId, movieName }) => {
       }
 
     return (
-    <div className='thumbNail'>
+    <div className='thumbnail'>
         <img 
-            className='thumbNailImage'
+            className='thumbnailImage'
             src={imageAddress}
             alt=''
             onClick={() => click(movieId)}
       />
-      <h4 className='movieName'>{movieName}</h4>
+      <h5 className='thumbnailName'>{movieName}</h5>
     </div>
     )
 }
