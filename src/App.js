@@ -4,27 +4,50 @@ import Header from './components/Header'
 
 const App = () => {
   const [movies, setMovies] = useState([])
+  const [genres, setGenres] = useState([])
 
   useEffect(() => {
+    const fetchMoviesAndSetState = async () =>{
+      const res = await fetch('https://wookie.codesubmit.io/movies', {
+        headers: {
+          'Authorization': 'Bearer Wookie2019'
+        }
+      })
+      const allMovies = await res.json()
+      setMovies(allMovies.movies)
+      // console.log(movies)
+    }
+  
+    const generateGenresAndSetState = () => {
+      const allGenres = []
+      
+      movies.forEach((m) => {
+        m.genres.forEach((g) => {
+          if (!allGenres.includes(g)) {
+            allGenres.push(g)
+          }
+        })
+      })
+      setGenres(allGenres)
+      console.log(genres)
+    }
+
     fetchMoviesAndSetState()
-  })
+    generateGenresAndSetState()
+  }, [])
 
-  const fetchMoviesAndSetState = async () =>{
-    const res = await fetch('https://wookie.codesubmit.io/movies', {
-      headers: {
-        'Authorization': 'Bearer Wookie2019'
-      }
+  const moviesByGenre = (movies, genre) => {
+    return movies.filter((m) => {
+      return m.genres.includes(genre)
     })
-    const allMovies = await res.json()
-    setMovies(allMovies.movies)
   }
-
-  // crategorize by genre
 
   return (
     <div className="App">
       <Header />
-      <GenreList movies={movies} />
+      {genres.map((g) => {
+        return <GenreList key={g} movies={moviesByGenre(movies, g)} genre={g}/>
+      })}
     </div>
   )
 }

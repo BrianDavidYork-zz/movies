@@ -1,4 +1,4 @@
-const Header = ({ imageAddress }) => {
+const Header = () => {
     return (
     <div className='header'>
         <h1 className='headerTitle'>Wookie Movies</h1>

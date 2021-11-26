@@ -22,9 +22,12 @@
   float: right;
   width: 300px;
   padding-top: 50px;
+  padding-right: 60px;
 }
 
 .headerTitle {
   float: left;
-  width: 200px;
+  width: 300px;
+  padding-top: 15px;
+  padding-left: 60px;
 }

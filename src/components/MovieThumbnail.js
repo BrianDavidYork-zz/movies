@@ -1,7 +1,7 @@
 const MovieThumbnail = ({ imageAddress, movieId, movieName }) => {
     const click = (id) => {
         console.log(id)
-      }
+    }
 
     return (
     <div className='thumbnail'>
