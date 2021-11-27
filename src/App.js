@@ -64,11 +64,10 @@ const App = () => {
 
   const renderBody = () => {
     if (showDetail) {
-      return <Detail movie={getMovieById()}/>
+      return <Detail movie={getMovieById()[0]}/>
     } else {
       return genres.map((g) => {
-        return <
-          GenreList 
+        return <GenreList 
           key={g} 
           movies={getMoviesByGenre(g)} 
           genre={g}
@@ -79,7 +78,7 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <div className='App'>
       <Header onHeaderClick={onHeaderClick}/>
       <hr />
       {renderBody()}
