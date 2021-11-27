@@ -3,9 +3,9 @@ import MovieThumbnail from "./MovieThumbnail"
 const GenreList = ({ movies, genre }) => {
     console.log(genre, ": ", movies)
     return (
-        <div>
+        <div className='genreList'>
             <h2>{genre}</h2>
-            <div className='genreList'>
+            <div>
                 {movies.map((m) => {
                     return <MovieThumbnail 
                         key={m.id} 
@@ -14,7 +14,7 @@ const GenreList = ({ movies, genre }) => {
                         movieName={m.title}
                     />
                 })}
-            </div> 
+            </div>
         </div> 
         )
 }
