@@ -1,7 +1,7 @@
-const MovieThumbnail = ({ imageAddress, movieId, movieName }) => {
-    const click = (id) => {
-        console.log(id)
-    }
+const MovieThumbnail = ({ imageAddress, movieId, movieName, onImageClick }) => {
+    // const click = (id) => {
+    //     console.log(id)
+    // }
 
     return (
     <div className='thumbnail'>
@@ -9,7 +9,7 @@ const MovieThumbnail = ({ imageAddress, movieId, movieName }) => {
             className='thumbnailImage'
             src={imageAddress}
             alt=''
-            onClick={() => click(movieId)}
+            onClick={() => {onImageClick(movieId)}}
       />
       <h5 className='thumbnailName'>{movieName}</h5>
     </div>

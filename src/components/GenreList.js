@@ -1,7 +1,6 @@
 import MovieThumbnail from "./MovieThumbnail"
 
-const GenreList = ({ movies, genre }) => {
-    console.log(genre, ": ", movies)
+const GenreList = ({ movies, genre, onImageClick }) => {
     return (
         <div className='genreList'>
             <h2>{genre}</h2>
@@ -12,6 +11,7 @@ const GenreList = ({ movies, genre }) => {
                         imageAddress={m.backdrop}
                         movieId={m.id}
                         movieName={m.title}
+                        onImageClick={onImageClick}
                     />
                 })}
             </div>

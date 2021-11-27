@@ -1,7 +1,7 @@
-const Header = () => {
+const Header = ({ onHeaderClick }) => {
     return (
     <div className='header'>
-        <h1 className='headerTitle'>Wookie Movies</h1>
+        <h1 className='headerTitle' onClick={() => {onHeaderClick()}}>Wookie Movies</h1>
         <div className='headerSearch'>
             <input
                 type='text'

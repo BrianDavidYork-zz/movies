@@ -1,17 +1,20 @@
 import { useEffect, useState} from 'react'
+import Detail from './components/Detail'
 import GenreList from './components/GenreList'
 import Header from './components/Header'
 
 const App = () => {
   const [movies, setMovies] = useState([])
   const [genres, setGenres] = useState([])
+  const [showDetail, setShowDetail] = useState(false)
+  const [movieId, setMovieId] = useState(null)
 
   useEffect(() => {
-    fetchMoviesAndSetState();
-  }, []);
+    fetchMoviesAndSetState()
+  }, [])
 
   useEffect(() => {
-    generateGenresAndSetState();
+    generateGenresAndSetState()
   }, [movies])
 
   const fetchMoviesAndSetState = async () =>{
@@ -22,7 +25,6 @@ const App = () => {
     })
     const allMovies = await res.json()
     setMovies(allMovies.movies)
-    console.log(movies)
   }
 
   const generateGenresAndSetState = () => {
@@ -36,21 +38,51 @@ const App = () => {
       })
     })
     setGenres(allGenres)
-    console.log(genres)
   }
 
-  const moviesByGenre = (movies, genre) => {
+  const getMoviesByGenre = (genre) => {
     return movies.filter((m) => {
       return m.genres.includes(genre)
     })
   }
 
+  const getMovieById = () => {
+    return movies.filter((m) => {
+      return m.id === movieId
+    })
+  }
+
+  const onImageClick = (id) => {
+    setMovieId(id)
+    setShowDetail(true)
+  }
+
+  const onHeaderClick = () => {
+    setMovieId(null)
+    setShowDetail(false)
+  }
+
+  const renderBody = () => {
+    if (showDetail) {
+      return <Detail movie={getMovieById()}/>
+    } else {
+      return genres.map((g) => {
+        return <
+          GenreList 
+          key={g} 
+          movies={getMoviesByGenre(g)} 
+          genre={g}
+          onImageClick={onImageClick}
+          />
+      })
+    }
+  }
+
   return (
     <div className="App">
-      <Header />
-      {genres.map((g) => {
-        return <GenreList key={g} movies={moviesByGenre(movies, g)} genre={g}/>
-      })}
+      <Header onHeaderClick={onHeaderClick}/>
+      <hr />
+      {renderBody()}
     </div>
   )
 }

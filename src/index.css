@@ -8,6 +8,7 @@
   border-radius: 4px;
   padding: 5px;
   width: 150px;
+  cursor: pointer;
 }
 
 .thumbnailName {
@@ -30,6 +31,7 @@
   width: 300px;
   padding-top: 15px;
   padding-left: 60px;
+  cursor: pointer;
 }
 
 .genreList {
