@@ -1,5 +1,4 @@
 const Detail = ({ movie }) => {
-    console.log(movie)
     const releaseYear = movie.released_on.slice(0,4)
     return (
     <div className='detail'>

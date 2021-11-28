@@ -15,6 +15,7 @@ const App = () => {
 
   useEffect(() => {
     generateGenresAndSetState()
+    // eslint-disable-next-line
   }, [movies])
 
   const fetchMoviesAndSetState = async () =>{
