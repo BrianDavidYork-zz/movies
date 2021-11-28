@@ -12,6 +12,7 @@ const GenreList = ({ movies, genre, onImageClick }) => {
                         movieId={m.id}
                         movieName={m.title}
                         onImageClick={onImageClick}
+                        slug={m.slug}
                     />
                 })}
             </div>
